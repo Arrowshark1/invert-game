@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://clf8sy7a0x7eu"]
+
+[ext_resource type="Texture2D" uid="uid://c6ymfa8sx7e85" path="res://assets/sprites/long_asc_sponge.png" id="1_6pgmb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygyjk"]
+radius = 7.0
+height = 42.0
+
+[node name="DecorativeAsconid" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -8)
+texture = ExtResource("1_6pgmb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ygyjk")

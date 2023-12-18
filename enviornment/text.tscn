@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvp83ivv411cs"]
+
+[ext_resource type="Script" path="res://scripts/Text.gd" id="1_ehn0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8jj8"]
+size = Vector2(103, 94)
+
+[node name="Text" type="Area2D"]
+script = ExtResource("1_ehn0p")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -46.0
+offset_right = 150.0
+offset_bottom = -23.0
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f8jj8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

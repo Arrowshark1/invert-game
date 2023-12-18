@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds1hn1ueb7jef"]
+
+[ext_resource type="Script" path="res://scripts/current.gd" id="1_spf2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iou57"]
+size = Vector2(55, 48)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cjgbt"]
+emission_shape = 3
+emission_box_extents = Vector3(19.68, 20, 2.08165e-12)
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 20.0
+initial_velocity_max = 36.84
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.87451, 0.917647, 1, 1)
+
+[node name="Current" type="Area2D"]
+position = Vector2(160, 61)
+rotation = 0.00884452
+script = ExtResource("1_spf2q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iou57")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-13, 0)
+process_material = SubResource("ParticleProcessMaterial_cjgbt")
+trail_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(50, 2.08165e-12)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(21.9991, -0.194576)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

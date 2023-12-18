@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck4lufq6dcyfi"]
+
+[ext_resource type="Script" path="res://scripts/asconoid_sponge.gd" id="1_rucvt"]
+[ext_resource type="Texture2D" uid="uid://c6ymfa8sx7e85" path="res://assets/sprites/long_asc_sponge.png" id="1_wgtad"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyk0j"]
+radius = 7.0
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dhe"]
+size = Vector2(20, 19)
+
+[node name="Asconoid Sponge" type="StaticBody2D"]
+position = Vector2(473, -12)
+script = ExtResource("1_rucvt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -12)
+texture = ExtResource("1_wgtad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_iyk0j")
+
+[node name="InteractionPoints" type="Node2D" parent="."]
+
+[node name="ShrinkArea" type="Area2D" parent="InteractionPoints"]
+position = Vector2(-17, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionPoints/ShrinkArea"]
+shape = SubResource("RectangleShape2D_q2dhe")
+
+[node name="ShrinkArea2" type="Area2D" parent="InteractionPoints"]
+position = Vector2(1, -35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionPoints/ShrinkArea2"]
+shape = SubResource("RectangleShape2D_q2dhe")
+
+[node name="ShrinkArea3" type="Area2D" parent="InteractionPoints"]
+position = Vector2(17, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionPoints/ShrinkArea3"]
+position = Vector2(2, -8)
+shape = SubResource("RectangleShape2D_q2dhe")
+
+[connection signal="body_entered" from="InteractionPoints/ShrinkArea" to="." method="_on_shrink_area_body_entered"]
+[connection signal="body_exited" from="InteractionPoints/ShrinkArea" to="." method="_on_shrink_area_body_exited"]
